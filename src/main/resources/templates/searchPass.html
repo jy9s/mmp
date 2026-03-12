@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ログイン</title>
+
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+</head>
+<script>
+$(document).ready(function() {
+	
+	$("#btn").click(function(){
+
+		let email = $("#idBox").val().trim();
+	    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+	    if(email === "" || !emailPattern.test(email)){
+	        $("#idBox").css("border","2px solid red");
+	        $("#emailError").show();
+	        $("#idBox").focus();
+	        return false;
+	    }else{
+	        $("#idBox").css("border","");
+	        $("#emailError").hide();
+	        $("#loginFrm").submit();
+	    }
+
+	});
+	
+	
+});
+
+</script>
+
+
+
+<body>
+	<div class="wrap">
+		<div class="login-bg">
+			<div style="height:1px;"></div>
+			<div class="login">
+				<img src = "../images/logo.png" class="logo">
+				<h3>パスワード再設定</h3>			
+				<p>パスワード再設定用のメールを送信します。<br>会員に登録されたメールアドレスを入力してください。</p>	
+				<p>ユーザIDまたはメールアドレス (必須)</p>
+				<form action="/loginFrmProcess" method="post" name="loginFrm" id="loginFrm">
+					<input type="text" id="idBox" name="id" class="w-100">
+					<div id="emailError" class="text-danger" style="display:none;">
+				        メールアドレスを確認してください
+				    </div>
+					<div class="w-100"></div>
+					<input type="button" class="w-100 btn btn-primary" id="btn" value="メールを送信する">
+				</form>
+				
+				<div class="w-100"></div>
+				<div class="w-100"></div>
+				<div class="w-100"></div>
+				<hr>
+				<div class="w-100"></div>
+				<div class="w-100"></div>
+				<div class="footer-logo">© miniMMP</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
