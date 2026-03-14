@@ -45,7 +45,7 @@ $(document).ready(function() {
 			<div style="height:1px;"></div>
 			<div class="login">
 				<img src = "../images/logo.png" class="logo">
-				<h3>환영합니다.</h3>		
+				<h4 th:text="|ようこそ ${user.email}|"></h4>		
 				<div class="w-100"></div>
 				<div class="w-100"></div>
 				<p>パスワード (必須)</p>
@@ -60,7 +60,6 @@ $(document).ready(function() {
 				<div class="w-100"></div>
 				<div class="w-100"></div>
 				<hr>
-				
 				<input type="button" value="会員登録" class="w-100 btn btn-outline-primary">
 				<div class="w-100"></div>
 				<div class="footer-logo">© miniMMP</div>

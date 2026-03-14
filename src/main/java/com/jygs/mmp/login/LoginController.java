@@ -1,12 +1,19 @@
 package com.jygs.mmp.login;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import org.springframework.ui.Model;
+
 @Controller
 public class LoginController {
+	
+	
+	@Autowired
+	private LoginService ls;
+	
 	
 	@GetMapping("/")
 	public String login() {
@@ -23,18 +30,32 @@ public class LoginController {
 		return "searchPass";
 	}
 	
-	@GetMapping("/register")
-	public String register() {
-		
-		
-		return "register";
-	}
+	
 	@PostMapping("/pass")
-	public String pass(LoginDTO lDTO) {
+	public String pass(LoginEntity le, Model model) {
 		
-		System.out.println(lDTO.getId());
+		
+		LoginEntity user = ls.searchOneUser(le.getEmail());
+		
+		
+		model.addAttribute("user",le);
+		
+		if(user==null) {
+			
+			return "register";
+		}
+		
 		
 		return "pass";
+	}
+	
+	@GetMapping("/registerProcess")
+	public String registerProcess(LoginEntity le, Model model) {
+
+		LoginEntity user = ls.searchOneUser(le.getEmail());
+		model.addAttribute("user",le);
+		
+		return "registerProcess";
 	}
 
 }

@@ -14,26 +14,10 @@
 </head>
 <script>
 $(document).ready(function() {
-	
 	$("#btn").click(function(){
-
-		let email = $("#idBox").val().trim();
-	    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-	    if(email === "" || !emailPattern.test(email)){
-	        $("#idBox").css("border","2px solid red");
-	        $("#emailError").show();
-	        $("#idBox").focus();
-	        return false;
-	    }else{
-	        $("#idBox").css("border","");
-	        $("#emailError").hide();
-	        $("#loginFrm").submit();
-	    }
-
+		email = $("#email").text();
+		location.href = "/registerProcess?email="+email;
 	});
-	
-	
 });
 
 </script>
@@ -46,26 +30,26 @@ $(document).ready(function() {
 			<div style="height:1px;"></div>
 			<div class="login">
 				<img src = "../images/logo.png" class="logo">
-				<h3>パスワード再設定</h3>			
-				<p>パスワード再設定用のメールを送信します。<br>会員に登録されたメールアドレスを入力してください。</p>	
-				<p>メールアドレス (必須)</p>
-				<form action="/loginFrmProcess" method="post" name="loginFrm" id="loginFrm">
-					<input type="text" id="idBox" name="id" class="w-100">
-					<div id="emailError" class="text-danger" style="display:none;">
-				        メールアドレスを確認してください
-				    </div>
-					<div class="w-100"></div>
-					<input type="button" class="w-100 btn btn-primary" id="btn" value="メールを送信する">
-				</form>
-				
+				<h4>アカウントを作成</h4>		
 				<div class="w-100"></div>
+				<div class="w-100"></div>
+				<p>
+					<span th:text="${user.email}" id="email"></span>
+					<a th:href="@{/}">変更</a>
+				</p>
+				<div class="w-100"></div>
+				<p>メールアドレスを使ってアカウントを作成しましょう</p>
+				<div class="w-100"></div>
+				<input type="button" class="w-100 btn btn-primary" value="アカウントの作成に進む" id="btn">
 				<div class="w-100"></div>
 				<div class="w-100"></div>
 				<hr>
-				<div class="w-100"></div>
+				<p>すでにminiMMPのお客様ですか？</p> 
+				<a th:href="@{/}">別のメールアドレスまたは携帯電話でサインインする</a>
 				<div class="w-100"></div>
 				<div class="footer-logo">© miniMMP</div>
 			</div>
+			
 		</div>
 
 	</div>
