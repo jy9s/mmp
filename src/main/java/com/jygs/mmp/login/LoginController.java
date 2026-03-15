@@ -31,15 +31,18 @@ public class LoginController {
 	}
 	
 	
+	
+	
 	@PostMapping("/pass")
 	public String pass(LoginEntity le, Model model) {
 		
-		
+
 		LoginEntity user = ls.searchOneUser(le.getEmail());
 		
 		
 		model.addAttribute("user",le);
 		
+		//check email
 		if(user==null) {
 			
 			return "register";
@@ -49,13 +52,34 @@ public class LoginController {
 		return "pass";
 	}
 	
+	
 	@GetMapping("/registerProcess")
 	public String registerProcess(LoginEntity le, Model model) {
 
-		LoginEntity user = ls.searchOneUser(le.getEmail());
 		model.addAttribute("user",le);
 		
 		return "registerProcess";
 	}
+	
+	
+	@PostMapping("/loginProcess")
+	public String loginProcess(LoginEntity le, Model model) {
+
+		
+		LoginEntity user = ls.searchOneUser(le.getEmail(),le.getPass());
+		
+		//check account
+		if(user==null) {
+			
+			model.addAttribute("user",le);
+			model.addAttribute("flag",1);
+			return "pass";
+		}
+		
+		model.addAttribute("user",le);
+		
+		return "dashboard";
+	}
+
 
 }
