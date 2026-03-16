@@ -23,9 +23,9 @@ public class LoginEntity {
 	@Column(name="NUM", nullable = false)
 	private Integer num;
 	
-	@Column(name="EMAIL", length = 30, nullable=false)
+	@Column(name="EMAIL", length = 100, nullable=false)
 	private String email;
 	
-	@Column(name="PASS", length = 200, nullable=false)
+	@Column(name="PASS", length = 300, nullable=false)
 	private String pass;	
 }

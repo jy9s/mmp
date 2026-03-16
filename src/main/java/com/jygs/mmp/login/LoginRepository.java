@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface LoginRepository extends JpaRepository<LoginEntity, Integer> {
 
 	Optional<LoginEntity> findByEmail(String email);
-	Optional<LoginEntity> findByEmailAndPass(String email,String pass);
 	
 	
 }

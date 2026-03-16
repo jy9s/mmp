@@ -67,7 +67,6 @@ public class LoginController {
 
 		
 		LoginEntity user = ls.searchOneUser(le.getEmail(),le.getPass());
-		
 		//check account
 		if(user==null) {
 			
@@ -78,8 +77,23 @@ public class LoginController {
 		
 		model.addAttribute("user",le);
 		
+		return "redirect:dashboard";
+	}
+	
+	@GetMapping("/dashboard")
+	public String dashboard() {
+		
+		
+		
 		return "dashboard";
 	}
 
+	
+	@PostMapping("/emailCheck")
+	public String emailCheck() {
+		
+		return "emailCheck";
+		
+	}
 
 }

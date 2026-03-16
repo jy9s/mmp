@@ -14,10 +14,64 @@
 </head>
 <script>
 $(document).ready(function() {
+	
+	var flag = false;
+	
 	$("#btn").click(function(){
 		
+		if($("#name").val()==""){
+			alert("이름을 입력하세요");
+			return;
+		}
+		
+		
+		$("#registerForm").submit();
 		
 	});
+	
+	
+	$("#pass").change(function(){
+		var pass = $("#pass").val();
+		var passChk = $("#passChk").val();
+		
+		if(pass.length<6){
+			$("#lengthError").show();	
+			$("#btn").prop("disabled",true);
+		}else{
+			$("#lengthError").hide();
+			if(pass != passChk){
+				$("#btn").prop("disabled",true);
+				$("#passChk").css("border","2px solid red");
+				$("#passError").show();
+			}else{
+				$("#passChk").css("border","1px solid black");
+				$("#passError").hide();
+				$("#btn").prop("disabled",false);
+			}
+			flag = true;
+		}
+	})
+	
+	$("#passChk").change(function(){
+
+		var pass = $("#pass").val();
+		var passChk = $("#passChk").val();
+		
+		if(flag){
+			if(pass != passChk){
+				$("#passChk").css("border","2px solid red");
+				$("#passError").show();
+				$("#btn").prop("disabled",true);
+			}else{
+				$("#passChk").css("border","1px solid black");
+				$("#passError").hide();
+				$("#btn").prop("disabled",false);
+	
+			}
+		}
+		
+	});
+	
 });
 
 </script>
@@ -28,27 +82,32 @@ $(document).ready(function() {
 	<div class="wrap">
 		<div class="login-bg">
 			<div style="height:1px;"></div>
-			<div class="login" style="height:900px">
+			<div class="login" style="height:950px">
 				<img src = "../images/logo.png" class="logo">
 				<h4>アカウントを作成</h4>		
 				<div class="w-100"></div>
-				<p>携帯電話番号またはEメールアドレスを入力します</p>
-				<input type="text" class="w-100" th:value=${user.email} disabled="disabled">
-				<div class="w-100"></div>
-				<p>氏名</p>
-				<input type="text" class="w-100">
-				<div class="w-100"></div>
-				<p>パスワード（6文字以上）</p>
-				<input type="password" class="w-100">
-				<div class="w-100"></div>
-				<p>もう一度パスワードを入力してください</p>
-				<input type="password" class="w-100">
-				<div class="w-100"></div>
-				
-				
-				
-				
-				<input type="button" class="w-100 btn btn-primary" value="アカウントの作成に進む" id="btn">
+				<p>メールアドレスを入力します</p>
+				<form action="/emailCheck" method="post" id="registerForm">
+					<input type="text" class="w-100" th:value=${user.email} disabled="disabled">
+					<div class="w-100"></div>
+					<p>氏名</p>
+					<input type="text" class="w-100"  name="name" id="name">
+					<div class="w-100"></div>
+					<p>パスワード（6文字以上）</p>
+					<input type="password" class="w-100"  name="password" id="pass">
+					<div id="lengthError" class="text-danger w-100" style="display:none;">
+				        パスワードを確認してください
+				    </div>
+					<div class="w-100"></div>
+					<p>もう一度パスワードを入力してください</p>
+					<input type="password" class="w-100"  name="passwordChk" id="passChk">
+					<div id="passError" class="text-danger w-100" style="display:none;">
+				        パスワードを確認してください
+				    </div>
+					<div class="w-100"></div>
+					<input type="button" class="w-100 btn btn-primary" value="アカウントの作成に進む" id="btn" disabled="disabled">
+					
+				</form>
 				<div class="w-100"></div>
 				<div class="w-100"></div>
 				<hr>
