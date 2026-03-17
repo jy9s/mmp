@@ -88,13 +88,13 @@ $(document).ready(function() {
 				<div class="w-100"></div>
 				<p>メールアドレスを入力します</p>
 				<form action="/emailCheck" method="post" id="registerForm">
-					<input type="text" class="w-100" th:value=${user.email} disabled="disabled">
+					<input type="text" class="w-100" th:value="${user.email}" readonly="readonly" name="email">
 					<div class="w-100"></div>
 					<p>氏名</p>
 					<input type="text" class="w-100"  name="name" id="name">
 					<div class="w-100"></div>
 					<p>パスワード（6文字以上）</p>
-					<input type="password" class="w-100"  name="password" id="pass">
+					<input type="password" class="w-100"  name="pass" id="pass">
 					<div id="lengthError" class="text-danger w-100" style="display:none;">
 				        パスワードを確認してください
 				    </div>

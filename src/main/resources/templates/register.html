@@ -15,8 +15,7 @@
 <script>
 $(document).ready(function() {
 	$("#btn").click(function(){
-		email = $("#email").text();
-		location.href = "/registerProcess?email="+email;
+		$("#frm").submit();
 	});
 });
 
@@ -40,7 +39,10 @@ $(document).ready(function() {
 				<div class="w-100"></div>
 				<p>メールアドレスを使ってアカウントを作成しましょう</p>
 				<div class="w-100"></div>
-				<input type="button" class="w-100 btn btn-primary" value="アカウントの作成に進む" id="btn">
+				<form id="frm" action="/registerProcess" method="post">
+				    <input type="hidden" name="email" id="email" th:value="${user.email}">
+					<input type="button" class="w-100 btn btn-primary" value="アカウントの作成に進む" id="btn">
+				</form>
 				<div class="w-100"></div>
 				<div class="w-100"></div>
 				<hr>

@@ -1,18 +1,19 @@
 package com.jygs.mmp.login;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import org.springframework.ui.Model;
+import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 public class LoginController {
 	
 	
-	@Autowired
-	private LoginService ls;
+	private final LoginService ls;
 	
 	
 	@GetMapping("/")
@@ -53,7 +54,7 @@ public class LoginController {
 	}
 	
 	
-	@GetMapping("/registerProcess")
+	@PostMapping("/registerProcess")
 	public String registerProcess(LoginEntity le, Model model) {
 
 		model.addAttribute("user",le);
@@ -63,7 +64,7 @@ public class LoginController {
 	
 	
 	@PostMapping("/loginProcess")
-	public String loginProcess(LoginEntity le, Model model) {
+	public String loginProcess(LoginEntity le, Model model, HttpSession session) {
 
 		
 		LoginEntity user = ls.searchOneUser(le.getEmail(),le.getPass());
@@ -75,7 +76,8 @@ public class LoginController {
 			return "pass";
 		}
 		
-		model.addAttribute("user",le);
+		session.setAttribute("userEmail", le.getEmail());
+		
 		
 		return "redirect:dashboard";
 	}
@@ -89,11 +91,6 @@ public class LoginController {
 	}
 
 	
-	@PostMapping("/emailCheck")
-	public String emailCheck() {
-		
-		return "emailCheck";
-		
-	}
+
 
 }

@@ -2,6 +2,8 @@ package com.jygs.mmp.login;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -20,6 +22,7 @@ import lombok.ToString;
 public class LoginEntity {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="NUM", nullable = false)
 	private Integer num;
 	
@@ -27,5 +30,8 @@ public class LoginEntity {
 	private String email;
 	
 	@Column(name="PASS", length = 300, nullable=false)
-	private String pass;	
+	private String pass;
+	
+	@Column(name="NAME", length = 300, nullable=false)
+	private String name;
 }

@@ -12,29 +12,36 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
 </head>
-<script>
+
+<script th:inline="javascript">
+
 $(document).ready(function() {
 
-	$("#btn").click(function(){
+    let join = [[${param.join}]];
 
-		let email = $("#idBox").val().trim();
-	    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(join == 1){
+    	alert("ご登録ありがとうございます！");
+    }
 
-	    if(email === "" || !emailPattern.test(email)){
-	        $("#idBox").css("border","2px solid red");
-	        $("#emailError").show();
-	        $("#idBox").focus();
-	        return false;
-	    }else{
-	        $("#idBox").css("border","");
-	        $("#emailError").hide();
-	        $("#loginFrm").submit();
-	    }
+    $("#btn").click(function(){
 
-	});
-	
+        let email = $("#idBox").val().trim();
+        let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if(email === "" || !emailPattern.test(email)){
+            $("#idBox").css("border","2px solid red");
+            $("#emailError").show();
+            $("#idBox").focus();
+            return false;
+        }else{
+            $("#idBox").css("border","");
+            $("#emailError").hide();
+            $("#loginFrm").submit();
+        }
+
+    });
+
 });
-
 </script>
 
 
