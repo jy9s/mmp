@@ -90,6 +90,12 @@ public class LoginController {
 		return "dashboard";
 	}
 
+	@GetMapping("/changePass")
+	public String changePass(HttpSession session) {
+		
+		
+		return "changePass";
+	}
 	
 
 

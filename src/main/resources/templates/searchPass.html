@@ -28,7 +28,7 @@ $(document).ready(function() {
 	    }else{
 	        $("#idBox").css("border","");
 	        $("#emailError").hide();
-	        $("#loginFrm").submit();
+	        $("#searchFrm").submit();
 	    }
 
 	});
@@ -49,11 +49,12 @@ $(document).ready(function() {
 				<h3>パスワード再設定</h3>			
 				<p>パスワード再設定用のメールを送信します。<br>会員に登録されたメールアドレスを入力してください。</p>	
 				<p>メールアドレス (必須)</p>
-				<form action="/loginFrmProcess" method="post" name="loginFrm" id="loginFrm">
-					<input type="text" id="idBox" name="id" class="w-100">
+				<form action="/searchProcess" method="post" name="searchFrm" id="searchFrm">
+					<input type="text" id="idBox" name="email" class="w-100">
 					<div id="emailError" class="text-danger" style="display:none;">
 				        メールアドレスを確認してください
 				    </div>
+				    <input type="hidden" name="type" value="find">
 					<div class="w-100"></div>
 					<input type="button" class="w-100 btn btn-primary" id="btn" value="メールを送信する">
 				</form>
