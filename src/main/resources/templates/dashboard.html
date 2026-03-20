@@ -108,14 +108,24 @@ body {
 						<tr>
 							<th>Campaign</th>
 							<th>Channel</th>
-							<th>Budget</th>
+							<th>Cost</th>							
+							<th>Impression</th>
+							<th>Clicks</th>
+							<th>Installs</th>
+							<th>Conversion</th>
+							<th>Revenue</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="campaign : ${campaignList}">
-							<td th:text="${campaign.name}"></td>
-							<td th:text="${campaign.channel}"></td>
-							<td th:text="${campaign.budget}"></td>
+						<tr th:each="list : ${list}">
+							<td th:text="${#temporals.format(list.statsDate, 'yyyy-MM-dd')}"></td>
+							<td th:text="${list.channel}"></td>
+							<td th:text="${list.cost}"></td>
+							<td th:text="${list.impressions}"></td>
+							<td th:text="${list.clicks}"></td>
+							<td th:text="${list.installs}"></td>
+							<td th:text="${list.conversions}"></td>
+							<td th:text="${list.revenue}"></td>
 						</tr>
 					</tbody>
 				</table>

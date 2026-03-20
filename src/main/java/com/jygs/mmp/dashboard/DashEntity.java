@@ -26,8 +26,9 @@ public class DashEntity {
 	@Column(name="STATS_ID")
     private Long statsId;
 	
+
 	@Column(name="CAMPAIGN_ID")
-    private Long campaignId;
+    private String campaignId;
 	
 	@Column(name="STATS_DATE")
     private LocalDate statsDate;

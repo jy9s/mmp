@@ -3,6 +3,7 @@ package com.jygs.mmp.dashboard;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -16,11 +17,12 @@ public class DashController {
 	}
 	
 	@GetMapping("/dashboard")
-	public String dashboard() {
+	public String dashboard(Model model) {
 		
-		List<DashEntity> list =  ds.searchDailyStats();
+		List<DashDTO> list = ds.getDashboardData();
 		
-		System.out.println(list);
+		model.addAttribute("list", list);
+		
 		
 		return "dashboard";
 	}
