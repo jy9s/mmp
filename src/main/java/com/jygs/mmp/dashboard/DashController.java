@@ -10,24 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class DashController {
 
 	
-	private final DashService ds;	
-	
-	public DashController(DashService ds) {
-		this.ds=ds;
-	}
-	
-	@GetMapping("/dashboard")
-	public String dashboard(Model model) {
-		
-		List<DashDTO> list = ds.getDashboardData();
-		
-		model.addAttribute("list", list);
-		
-		
-		return "dashboard";
-	}
-	
-	
+
 	
 	
 }
